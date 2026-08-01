@@ -152,7 +152,9 @@
 
   /* ---------- Hero ---------- */
   .hero{
-    background:radial-gradient(120% 140% at 15% 0%, var(--navy-600) 0%, var(--navy-900) 62%);
+    background:
+      radial-gradient(120% 140% at 15% 0%, rgba(12,63,108,0.88) 0%, rgba(0,27,51,0.95) 62%),
+      url('images/campus-building.jpg') center 60%/cover no-repeat;
     color:var(--white);
     overflow:hidden;
   }
@@ -233,26 +235,97 @@
   .terminal .tbtn.donate{background:var(--gold-500);color:var(--navy-900);}
   .terminal .tbtn.request{background:rgba(255,255,255,0.1);color:var(--white);border:1px solid rgba(255,255,255,0.25);}
 
-  /* ---------- Punch-card stat ---------- */
-  .stat-wrap{display:grid;gap:40px;grid-template-columns:1fr;align-items:center;margin:36px 0;}
-  @media(min-width:800px){.stat-wrap{grid-template-columns:auto 1fr;}}
-  .punch-card{
-    background:var(--white);border:1.5px solid #e3d9bd;border-radius:14px;
-    padding:26px 30px;box-shadow:var(--shadow);width:fit-content;position:relative;
-    display:flex;align-items:center;gap:18px;
+  /* ---------- Stat spotlight ---------- */
+  .stat-spotlight{
+    background:linear-gradient(155deg,var(--navy-600),var(--navy-900) 75%);
+    border-radius:24px;padding:clamp(30px,5vw,54px) clamp(28px,5vw,60px);
+    display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,5vw,52px);align-items:center;
+    box-shadow:0 26px 60px rgba(0,27,51,0.35);margin:36px 0;position:relative;overflow:hidden;
   }
-  .punch-card .holes{display:flex;flex-direction:column;gap:10px;}
-  .punch-card .holes span{width:9px;height:9px;border-radius:50%;background:var(--tint);border:1px solid #d7e0e8;}
-  .punch-card .big-hole{
-    width:118px;height:118px;border-radius:50%;background:var(--navy-700);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    color:var(--white);flex-shrink:0;
+  .stat-spotlight::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(60% 90% at 100% 0%, rgba(234,170,0,0.14), transparent 70%);
   }
-  .punch-card .big-hole .num{font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:2.6rem;color:var(--gold-500);line-height:1;}
-  .punch-card .big-hole .pct{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.06em;}
-  .stat-text{color:var(--ink);font-size:1.08rem;max-width:44ch;margin:0;}
-  .stat-text strong{color:var(--navy-700);}
-  .stat-text small{display:block;color:var(--muted);margin-top:10px;font-size:.85rem;font-family:'Space Mono',monospace;}
+  @media(max-width:720px){.stat-spotlight{grid-template-columns:1fr;text-align:center;justify-items:center;}}
+  .spotlight-chart{flex-shrink:0;position:relative;z-index:1;}
+  .spotlight-kicker{
+    display:flex;align-items:center;gap:8px;color:var(--gold-500);
+    font-family:'Space Mono',monospace;font-weight:700;font-size:.74rem;letter-spacing:.12em;
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  @media(max-width:720px){.spotlight-kicker{justify-content:center;}}
+  .spotlight-kicker::before{content:"";width:24px;height:2px;background:var(--gold-500);display:inline-block;}
+  .spotlight-copy{position:relative;z-index:1;}
+  .spotlight-headline{
+    font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.06;color:var(--white);margin:0 0 14px;
+  }
+  .spotlight-body{color:#c7d5e3;font-size:1.05rem;max-width:50ch;margin:0;}
+  .spotlight-body strong{color:var(--gold-500);}
+
+  /* ---------- Photos ---------- */
+  .photo-frame{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--white);border:1px solid #e7ebef;display:flex;flex-direction:column;}
+  .photo-frame img{width:100%;flex:1;object-fit:cover;display:block;min-height:220px;}
+  .photo-frame figcaption{padding:14px 18px;font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:.02em;line-height:1.5;}
+  .photo-wide{margin:40px 0;}
+  .photo-wide img{aspect-ratio:21/9;min-height:0;}
+
+  /* ---------- In Their Words ---------- */
+  .voices-grid{display:grid;gap:28px;grid-template-columns:1fr;}
+  @media(min-width:800px){.voices-grid{grid-template-columns:1fr 1fr;}}
+  .quote-card{
+    background:var(--navy-900);color:var(--white);border-radius:var(--radius);
+    padding:clamp(28px,4vw,42px);box-shadow:var(--shadow);display:flex;flex-direction:column;
+  }
+  .quote-card .quote-mark{font-family:'Big Shoulders Display',sans-serif;font-size:3.4rem;color:var(--gold-500);line-height:1;margin-bottom:2px;}
+  .quote-card blockquote{margin:0 0 20px;font-size:1.12rem;line-height:1.6;color:#e7edf3;font-style:italic;}
+  .quote-card .quote-note{
+    font-family:'Space Mono',monospace;font-size:.7rem;color:#8fa2b8;line-height:1.7;
+    border-top:1px solid rgba(255,255,255,0.15);padding-top:14px;margin-top:auto;
+  }
+  .video-placeholder{
+    background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:clamp(24px,4vw,30px);border:1px solid #e7ebef;display:flex;flex-direction:column;
+  }
+  .video-frame{
+    background:linear-gradient(160deg,#123a5c,#0a2540);border-radius:12px;aspect-ratio:16/9;
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  }
+  .play-btn{
+    width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.12);
+    border:2px solid var(--gold-500);display:flex;align-items:center;justify-content:center;color:var(--gold-500);
+  }
+  .play-btn svg{width:20px;height:20px;}
+  .video-badge{
+    display:inline-block;background:var(--tint);color:var(--navy-700);font-weight:700;font-size:.66rem;
+    text-transform:uppercase;letter-spacing:.06em;padding:4px 11px;border-radius:999px;margin-bottom:12px;width:fit-content;
+    font-family:'Space Mono',monospace;
+  }
+  .video-placeholder h3{font-size:1.25rem;margin-bottom:8px;}
+  .video-placeholder p{color:var(--muted);font-size:.92rem;margin:0;}
+
+  /* ---------- Case study / existing resource ---------- */
+  .case-study,.existing-resource{
+    background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:clamp(24px,4vw,44px);display:grid;gap:32px;grid-template-columns:1fr;
+    border:1px solid #e7ebef;
+  }
+  @media(min-width:860px){
+    .case-study{grid-template-columns:.85fr 1.15fr;align-items:center;}
+    .existing-resource{grid-template-columns:.85fr 1.15fr;align-items:center;}
+  }
+  .case-media{display:flex;flex-direction:column;gap:16px;}
+  .case-logo{
+    width:100%;max-width:280px;border-radius:10px;border:1px solid #e7ebef;
+    padding:16px;background:var(--white);align-self:flex-start;
+  }
+  .case-copy h3,.existing-copy h3{font-size:1.6rem;margin-bottom:12px;}
+  .case-copy p,.existing-copy p{color:var(--muted);font-size:.98rem;}
+  .case-source{color:var(--muted);font-size:.66rem;letter-spacing:.03em;margin-top:4px;line-height:1.6;}
+  .case-disclaimer{
+    font-size:.82rem;color:var(--muted);background:var(--tint);border-radius:10px;
+    padding:12px 16px;margin-top:16px;
+  }
 
   /* ---------- Section heads ---------- */
   .section-head{max-width:68ch;margin:0 auto 44px;}
@@ -483,6 +556,7 @@
       <ul>
         <li><a href="#why">Why It Matters</a></li>
         <li><a href="#how">How It Works</a></li>
+        <li><a href="#elsewhere">Proven Elsewhere</a></li>
         <li><a href="#partners">Our Partners</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
@@ -500,6 +574,7 @@
     <ul>
       <li><a href="#why">Why It Matters</a></li>
       <li><a href="#how">How It Works</a></li>
+      <li><a href="#elsewhere">Proven Elsewhere</a></li>
       <li><a href="#partners">Our Partners</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -564,26 +639,64 @@
         <p>Right now, sharing a spare swipe means posting in a group chat, hoping someone sees it in time, then meeting up in person at a dining hall before it expires. It works sometimes. Most semesters, plenty of swipes just expire unused instead.</p>
       </div>
 
-      <div class="stat-wrap reveal">
-        <div class="punch-card" aria-hidden="true">
-          <div class="holes"><span></span><span></span><span></span></div>
-          <div class="big-hole">
-            <span class="num">10</span>
-            <span class="pct">PERCENT</span>
-          </div>
+      <div class="stat-spotlight reveal">
+        <div class="spotlight-chart" aria-hidden="true">
+          <svg viewBox="0 0 220 220" width="220" height="220">
+            <circle cx="110" cy="110" r="92" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="30"/>
+            <circle cx="110" cy="110" r="92" fill="none" stroke="#FF5A45" stroke-width="30"
+              stroke-dasharray="57.8 520.2" stroke-linecap="round" transform="rotate(-90 110 110)"/>
+            <text x="110" y="102" text-anchor="middle" font-family="'Big Shoulders Display',sans-serif" font-weight="900" font-size="58" fill="#ffffff">10%</text>
+            <text x="110" y="130" text-anchor="middle" font-family="'Space Mono',monospace" font-size="11" letter-spacing="2" fill="#EAAA00">NEED HELP</text>
+          </svg>
         </div>
-        <p class="stat-text">
-          <strong>About 10% of Georgia Tech students</strong> reported needing food assistance in a 2016 campus survey.
-          <small>THAT'S A LOT OF YELLOW JACKETS SKIPPING MEALS ON A CAMPUS WHERE SWIPES GO TO WASTE.</small>
-        </p>
+        <div class="spotlight-copy">
+          <span class="spotlight-kicker">The Number That Matters</span>
+          <p class="spotlight-headline">1 in 10 Yellow Jackets can't count on their next meal.</p>
+          <p class="spotlight-body">In a 2016 Georgia Tech campus survey, <strong>10% of students</strong> reported needing food assistance. That's the whole reason MealShare exists.</p>
+        </div>
       </div>
+
+      <figure class="photo-frame photo-wide reveal">
+        <img src="images/dining-food-line.jpg" alt="A Georgia Tech student selects food at a dining hall serving line.">
+        <figcaption>A GT Dining line like any other. Nothing about it shows who is running low on swipes.</figcaption>
+      </figure>
 
       <p class="reveal">MealShare exists to connect those two facts before another semester passes, by building the exchange directly into the system students already use every day.</p>
     </div>
   </section>
 
+  <!-- IN THEIR WORDS -->
+  <section id="voices" class="section section--tint" aria-labelledby="voices-heading">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">In Their Words</span>
+        <h2 id="voices-heading">A missed meal is never just about food</h2>
+        <p>Food insecurity shows up as headaches in lecture, no energy for a problem set, and grades that quietly slip. Numbers on a slide rarely capture that. A voice does.</p>
+      </div>
+
+      <div class="voices-grid">
+        <div class="quote-card reveal">
+          <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>By Thursday my BuzzCard balance was down to two swipes and rent was due Friday. I skipped dinner more nights than I want to admit. It caught up with me: headaches in class, no focus for problem sets, grades that didn't look like mine. I never told anyone. I didn't want to be the person asking for help.</blockquote>
+          <p class="quote-note">This is an illustrative account, not an actual testimonial, written to reflect patterns reported in national research on student food insecurity and its effects on physical health, mental health, and academic performance.</p>
+        </div>
+
+        <div class="video-placeholder reveal">
+          <div class="video-frame" aria-hidden="true">
+            <span class="play-btn">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7-11-7Z" fill="currentColor"/></svg>
+            </span>
+          </div>
+          <span class="video-badge">Coming Soon</span>
+          <h3>Hear it from a student</h3>
+          <p>A short video series is planned so Georgia Tech students can share, in their own words, what a missed meal costs them and what it means to have one covered.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS -->
-  <section id="how" class="section section--tint" aria-labelledby="how-heading">
+  <section id="how" class="section section--paper" aria-labelledby="how-heading">
     <div class="container">
       <div class="section-head reveal">
         <span class="kicker">The Process</span>
@@ -631,6 +744,11 @@
         </div>
       </div>
 
+      <figure class="photo-frame photo-wide reveal">
+        <img src="images/dining-commons.jpg" alt="Students eating and ordering food at a lively Georgia Tech dining commons, with self-serve food stations in the background.">
+        <figcaption>A Georgia Tech dining commons. Wherever a recipient eats on campus, a MealShare swipe works exactly like any other.</figcaption>
+      </figure>
+
       <div class="preview-block reveal">
         <div class="preview-copy">
           <span class="tag-preview">Concept Preview</span>
@@ -645,6 +763,35 @@
             <span class="flap-tile" data-target="8" aria-hidden="true">0</span>
             <span class="flap-tile" data-target="4" aria-hidden="true">0</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVEN ELSEWHERE -->
+  <section id="elsewhere" class="section section--tint" aria-labelledby="elsewhere-heading">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Proven At Other Schools</span>
+        <h2 id="elsewhere-heading">Georgia Tech would not be the first</h2>
+        <p>Meal-swipe donation is not an untested idea. Swipe Out Hunger, a nonprofit founded by a group of friends at UCLA in 2010, has grown into a national movement with partnerships at more than 110 colleges and universities, serving upward of 1.8 million meals to students who needed them.</p>
+      </div>
+
+      <div class="case-study reveal">
+        <div class="case-media">
+          <img class="case-logo" src="images/swipe-out-hunger-cornell.jpg" alt="Swipe Out Hunger and Cornell Dining logos">
+          <figure class="photo-frame">
+            <img src="images/students-sharing-meal.jpg" alt="Three students sharing a meal and talking together in a university dining hall.">
+            <figcaption>Students sharing a meal, the kind of everyday moment a swipe-donation program protects.</figcaption>
+          </figure>
+        </div>
+        <div class="case-copy">
+          <span class="tag-preview">Case Study: Cornell University</span>
+          <h3>Cornell Dining &amp; Swipe Out Hunger</h3>
+          <p>Cornell students can donate unused bonus meals from their meal plan each semester. Donations are collected into a shared Swipe Out Hunger fund, and Cornell students who meet eligibility requirements receive a meal plan drawn from that fund, usable at any Cornell Dining location.</p>
+          <p>The program is run through Cornell's Office of the Dean of Students, through the same First-Generation and Low-Income Student Support office that handles other confidential student needs. Every inquiry stays private, the same standard MealShare is built around.</p>
+          <p class="case-source mono">Source: <a href="https://scl.cornell.edu/residential-life/dining/about-dining/food-security/swipe-out-hunger" target="_blank" rel="noopener">Cornell Dining and Swipe Out Hunger</a>.</p>
+          <p class="case-disclaimer">MealShare is a Georgia Tech concept and is not affiliated with Cornell University or Swipe Out Hunger. This case study is included to show that swipe-donation programs already run successfully elsewhere.</p>
         </div>
       </div>
     </div>
@@ -680,6 +827,18 @@
           </span>
           <h3>UN SDG 2: Zero Hunger</h3>
           <p>The initiative ties campus action to the United Nations Sustainable Development Goal of ending hunger, at Tech's own scale.</p>
+        </div>
+      </div>
+
+      <div class="existing-resource reveal">
+        <figure class="photo-frame">
+          <img src="images/klemis-kitchen.jpg" alt="A wall display at Georgia Tech's Klemis Kitchen describing its history and mission, with a student entering the pantry.">
+          <figcaption>Klemis Kitchen, Georgia Tech's existing on-campus food pantry.</figcaption>
+        </figure>
+        <div class="existing-copy">
+          <span class="tag-preview">Already On Campus</span>
+          <h3>MealShare would join Klemis Kitchen, not replace it</h3>
+          <p>Georgia Tech already runs Klemis Kitchen, a 24/7 food pantry opened in 2015 by GT's Students' Temporary Assistance and Resources (STAR) office. MealShare is not meant to compete with that work. It targets a different gap, the hot, sit-down meals a pantry can't provide, by using the meal plan system Tech students already carry.</p>
         </div>
       </div>
 
@@ -799,6 +958,7 @@
       </div>
       <div class="disclaimer">
         <p><strong>MealShare is a concept proposal</strong> developed as a class project. This page is a promotional prototype, not a live Georgia Tech service. Credit: Green Forks student organization, in partnership with Georgia Tech Dining.</p>
+        <p>The account in "In Their Words" is illustrative, not an actual student testimonial. The Cornell Dining / Swipe Out Hunger case study is drawn from those organizations' public program information; MealShare is not affiliated with either. The Klemis Kitchen photo shows an existing, separately run Georgia Tech resource.</p>
       </div>
     </div>
   </div>
